@@ -71,10 +71,6 @@
                 return null;
             }
         }
-        public IQueryable<T> GetQueryable()
-        {
-            return _context.Set<T>();
-        }
         public async Task<IEnumerable<T>> GetListByAsync(Expression<Func<T, bool>> where)
         {
             try
@@ -109,7 +105,6 @@
                 return false;
             }
         }
-
         public async Task<bool> SaveChanges()
         {
             try
