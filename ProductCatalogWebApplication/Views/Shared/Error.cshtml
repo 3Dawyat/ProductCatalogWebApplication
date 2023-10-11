@@ -1,0 +1,26 @@
+﻿@model ErrorViewModel
+@inject IWebHostEnvironment _webHostEnvironment;
+
+@{
+    ViewData["Title"] = "Error";
+
+    var imageExists = File.Exists($"{_webHostEnvironment.WebRootPath}/errors/{Model.ErrorCode}.png");
+
+    var imagePath = $"/errors/{(imageExists ? Model.ErrorCode : "general")}";
+}
+
+<div class="d-flex flex-column flex-center text-center">
+	<div class="card card-flush  py-5">
+		<div class="card-body py-15 ">
+			<h1 class="fw-bolder  text-gray-900 mb-4">@Model.ErrorDescription</h1>
+			<div class="fw-semibold  text-gray-500 mb-7">An error occurred, please try again later.</div>
+			<div class="mb-3">
+				<img src="@($"{imagePath}.png")" class="mw-100 mh-300px " alt="">
+				<img src="@($"{imagePath}-dark.png")" class="mw-100 mh-300px" alt="">
+			</div>
+			<div class="mb-0">
+				<a href="/" class="btn btn-primary">Return Home</a>
+			</div>
+		</div>
+	</div>
+</div>

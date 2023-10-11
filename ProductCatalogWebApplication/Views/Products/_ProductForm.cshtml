@@ -1,0 +1,47 @@
+﻿@model ProductFormViewModel
+
+<form asp-action="@(string.IsNullOrEmpty(Model.Key) ? "Create" :"Edit" )"
+      data-ajax-method="post"
+      data-ajax="true"
+      data-ajax-begin="onModalBegin"
+      data-ajax-success="onModalSuccess"
+      data-ajax-failure="showErrorMessage"
+      data-ajax-complete="onModalComplete">
+    @if (!string.IsNullOrEmpty(Model.Key))
+    {
+        <input type="hidden" asp-for="Key" />
+    }
+    <div class="mb-3">
+        <label class="form-label" asp-for="Name"></label>
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger d-block"></span>
+    </div>
+    <div class="row">
+        <div class="mb-3 col-6">
+            <label asp-for="CategoryId"></label>
+            <select class="form-select form-select-solid" asp-for="CategoryId" asp-items="@Model.Categories">
+                <option value="">Select an category</option>
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger d-block"></span>
+
+        </div>
+        <div class="mb-3 col-6">
+            <label class="form-label" asp-for="Price"></label>
+            <input asp-for="Price" class="form-control">
+            <span asp-validation-for="Price" class="text-danger d-block"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3 col-6">
+            <label class="form-label" asp-for="StartDate"></label>
+            <input asp-for="StartDate" class="form-control">
+            <span asp-validation-for="StartDate" class="text-danger d-block"></span>
+        </div>
+        <div class="mb-3 col-6">
+            <label class="form-label" asp-for="Duration"></label>
+            <input asp-for="Duration" class="form-control">
+            <span asp-validation-for="Duration" class="text-danger d-block"></span>
+        </div>
+    </div>
+    <partial name="_PopUpModelFooter" />
+</form>

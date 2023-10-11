@@ -1,0 +1,19 @@
+﻿@model IEnumerable<CategoryViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <h1>Items</h1>
+    <div class="btn-group my-3">
+        <button class="btn btn-primary  js-btn-filter" data-url="/Products/GetByCategoryId/0">All</button>
+        @foreach (var category in Model)
+        {
+            <button class="btn btn-primary js-btn-filter" data-url="/Products/GetByCategoryId/@category.Id">@category.Name</button>
+        }
+    </div>
+
+    <div class="row mt-5" id="card-perant">
+       
+    </div>
+</div>
